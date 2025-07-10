@@ -11,7 +11,7 @@ DES_COLOR = {
 }
 
 
-def generar_plot(df: pl.DataFrame) -> go.Figure:
+def plot_bar(df: pl.DataFrame, des_color:dict=DES_COLOR) -> go.Figure:
     plot = go.Figure()
     plot.add_trace(go.Bar())
     for desarrollo in df["desarrollo"].unique(maintain_order=True):
@@ -21,12 +21,13 @@ def generar_plot(df: pl.DataFrame) -> go.Figure:
                 x=df_desarrollo["nivel_grado"],
                 y=df_desarrollo["porcentaje"],
                 name=desarrollo,
-                marker=dict(color=DES_COLOR[desarrollo]),
+                marker=dict(color=des_color[desarrollo]),
             )
         )
     plot.update_layout(
         barmode="stack",
         yaxis=dict(tickformat=",.2%"),
+        xaxis_tickangle=90,
         margin=dict(l=5, t=10),
         height=300,
     )
@@ -65,8 +66,8 @@ with tab_nac:
     for campo in campos:
         st.markdown(f"**{campo}**")
         p_nac_campo = p_nacional.filter(pl.col("campo") == campo)
-        plot_nac_campo = generar_plot(p_nac_campo)
-        st.plotly_chart(plot_nac_campo, key=f"nacional_{campo}")
+        plot_nac_campo = plot_bar(p_nac_campo)
+        st.plotly_chart(plot_nac_campo, key=f"p_nacional_{campo}")
 
 #### Resultados por servicio ####
 with tab_ser:
@@ -78,8 +79,8 @@ with tab_ser:
     for campo in campos:
         st.markdown(f"**{campo}**")
         p_ser_campo = p_ser_sel.filter(pl.col("campo") == campo)
-        plot_ser_campo = generar_plot(p_ser_campo)
-        st.plotly_chart(plot_ser_campo, key=f"servicio_{campo}")
+        plot_ser_campo = plot_bar(p_ser_campo)
+        st.plotly_chart(plot_ser_campo, key=f"p_servicio_{campo}")
 
 
 #### Resultados por sexo ####
@@ -92,8 +93,8 @@ with tab_sex:
     for campo in campos:
         st.markdown(f"**{campo}**")
         p_sex_campo = p_sex_sel.filter(pl.col("campo") == campo)
-        plot_sex_campo = generar_plot(p_sex_campo)
-        st.plotly_chart(plot_sex_campo, key=f"sexo_{campo}")
+        plot_sex_campo = plot_bar(p_sex_campo)
+        st.plotly_chart(plot_sex_campo, key=f"p_sexo_{campo}")
 
 
 #### Resultados por entidad ####
@@ -106,5 +107,5 @@ with tab_ent:
     for campo in campos:
         st.markdown(f"**{campo}**")
         p_ent_campo = p_ent_sel.filter(pl.col("campo") == campo)
-        plot_ent_campo = generar_plot(p_ent_campo)
-        st.plotly_chart(plot_ent_campo, key=f"entidad_{campo}")
+        plot_ent_campo = plot_bar(p_ent_campo)
+        st.plotly_chart(plot_ent_campo, key=f"p_entidad_{campo}")
