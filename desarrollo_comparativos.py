@@ -1,40 +1,8 @@
 import streamlit as st
 import polars as pl
 import plotly.graph_objects as go
+import plot_helper as ph
 from os import path
-
-DES_COLOR = {
-    "Sin evidencia": "#f6511d",
-    "Requiere apoyo": "#ffb400",
-    "En proceso": "#00a6ed",
-    "Desarrollado": "#7fb800",
-}
-
-
-def plot_bar(df: pl.DataFrame, grupo:str, des_color:dict=DES_COLOR) -> go.Figure:
-    n_grupos = len(df[grupo].unique())
-    alto_plot = (n_grupos * 25) + 150
-    plot = go.Figure()
-    plot.add_trace(go.Bar())
-    for desarrollo in df["desarrollo"].unique(maintain_order=True):
-        df_desarrollo = df.filter(pl.col("desarrollo") == desarrollo)
-        plot.add_trace(
-            go.Bar(
-                y=df_desarrollo[grupo],
-                x=df_desarrollo["porcentaje"],
-                orientation="h",
-                name=desarrollo,
-                text=df_desarrollo.select("porcentaje").with_columns(pl.col("porcentaje") * 100)["porcentaje"].round(2),
-                marker=dict(color=des_color[desarrollo]),
-            )
-        )
-    plot.update_layout(
-        barmode="stack",
-        xaxis=dict(tickformat=",.2%"),
-        margin=dict(l=5, t=20),
-        height=alto_plot,
-    )
-    return plot
 
 
 @st.cache_data
@@ -73,7 +41,7 @@ with tab_ser:
     for campo in campos:
         st.markdown(f"**{campo}**")
         p_ser_campo = p_ser_sel.filter(pl.col("campo") == campo)
-        plot_ser_campo = plot_bar(p_ser_campo, "servicio")
+        plot_ser_campo = ph.plot_bar(p_ser_campo, "servicio")
         st.plotly_chart(plot_ser_campo, key=f"p_servicio_{campo}")
 
 
@@ -85,7 +53,7 @@ with tab_sex:
     for campo in campos:
         st.markdown(f"**{campo}**")
         p_sex_campo = p_sex_sel.filter(pl.col("campo") == campo)
-        plot_sex_campo = plot_bar(p_sex_campo, "sexo")
+        plot_sex_campo = ph.plot_bar(p_sex_campo, "sexo")
         st.plotly_chart(plot_sex_campo, key=f"p_sexo_{campo}")
 
 
@@ -97,5 +65,5 @@ with tab_ent:
     for campo in campos:
         st.markdown(f"**{campo}**")
         p_ent_campo = p_ent_sel.filter(pl.col("campo") == campo)
-        plot_ent_campo = plot_bar(p_ent_campo, "entidad")
+        plot_ent_campo = ph.plot_bar(p_ent_campo, "entidad")
         st.plotly_chart(plot_ent_campo, key=f"p_entidad_{campo}")
