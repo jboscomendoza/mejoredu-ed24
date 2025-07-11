@@ -49,13 +49,13 @@ def plot_scatter(df: pl.DataFrame, grupo: str, scr_color: str = SCR_COLOR) -> go
             orientation="h",
             mode="markers+text",
             text=df["puntaje"].round(2),
-            textposition="top center",
+            textposition="middle right",
             marker=dict(color=scr_color),
         )
     )
     plot.update_layout(
         xaxis_range=[0, 20],
-        margin=dict(l=5, t=10),
+        margin=dict(l=5, t=20),
         height=alto_plot,
     )
     return plot

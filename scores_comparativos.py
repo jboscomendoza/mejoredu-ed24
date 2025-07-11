@@ -1,0 +1,69 @@
+import streamlit as st
+import polars as pl
+import plotly.graph_objects as go
+import plot_helper as ph
+from os import path
+
+
+@st.cache_data
+def read_parquet_data(archivo: str):
+    parquet_data = pl.read_parquet(path.join("data", archivo)).with_columns(
+        nivel_grado=(
+            pl.col("nivel").cast(pl.String) + " - " + pl.col("grado").cast(pl.String)
+        )
+    )
+    return parquet_data
+
+
+s_nacional = read_parquet_data("s_nac.parquet")
+s_entidad  = read_parquet_data("s_ent.parquet")
+s_servicio = read_parquet_data("s_ser.parquet")
+s_sexo     = read_parquet_data("s_sex.parquet")
+
+campos    = s_nacional["campo"].unique(maintain_order=True)
+entidades = s_entidad["entidad"].unique(maintain_order=True)
+servicios = s_servicio["servicio"].unique(maintain_order=True)
+sexos     = s_sexo["sexo"].unique(maintain_order=True)
+nivel_grados = s_nacional["nivel_grado"].unique(maintain_order=True)
+
+#### Page ####
+st.title("Resultados de la evaluación diagnóstica 2024-2025")
+
+sel_nivel_grado = st.selectbox("Grado", nivel_grados)
+
+tab_ser, tab_sex, tab_ent = st.tabs(["Servicio", "Sexo", "Entidad"])
+
+#### Resultados por servicio ####
+with tab_ser:
+    st.markdown("## Resultados por servicio")
+    s_ser_sel = s_servicio.filter(pl.col("nivel_grado") == sel_nivel_grado)
+
+    for campo in campos:
+        st.markdown(f"**{campo}**")
+        s_ser_campo = s_ser_sel.filter(pl.col("campo") == campo)
+        plot_ser_campo = ph.plot_scatter(s_ser_campo, "servicio")
+        st.plotly_chart(plot_ser_campo, key=f"s_servicio_{campo}")
+
+
+#### Resultados por sexo ####
+with tab_sex:
+    st.markdown("## Resultados por sexo")
+    s_sex_sel = s_sexo.filter(pl.col("nivel_grado") == sel_nivel_grado)
+
+    for campo in campos:
+        st.markdown(f"**{campo}**")
+        s_sex_campo = s_sex_sel.filter(pl.col("campo") == campo)
+        plot_sex_campo = ph.plot_scatter(s_sex_campo, "sexo")
+        st.plotly_chart(plot_sex_campo, key=f"s_sexo_{campo}")
+
+
+#### Resultados por entidad ####
+with tab_ent:
+    st.markdown("## Resultados por entidad")
+    s_ent_sel = s_entidad.filter(pl.col("nivel_grado") == sel_nivel_grado)
+
+    for campo in campos:
+        st.markdown(f"**{campo}**")
+        s_ent_campo = s_ent_sel.filter(pl.col("campo") == campo)
+        plot_ent_campo = ph.plot_scatter(s_ent_campo, "entidad")
+        st.plotly_chart(plot_ent_campo, key=f"s_entidad_{campo}")

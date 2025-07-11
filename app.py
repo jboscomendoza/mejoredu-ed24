@@ -5,7 +5,10 @@ pages = {
         st.Page("desarrollo_general.py", title="Resultados generales"),
         st.Page("desarrollo_comparativos.py", title="Comparativos"),
     ],
-    "Puntajes": [st.Page("scores_general.py", title="Resultados generales")],
+    "Puntajes": [
+        st.Page("scores_general.py", title="Resultados generales"),
+        st.Page("scores_comparativos.py", title="Comparativos"),
+    ],
 }
 
 navigation = st.navigation(pages)
