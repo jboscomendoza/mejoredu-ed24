@@ -31,7 +31,7 @@ def plot_bar(df: pl.DataFrame, grupo:str, des_color:dict=DES_COLOR) -> go.Figure
     plot.update_layout(
         barmode="stack",
         xaxis=dict(tickformat=",.2%"),
-        margin=dict(l=5, t=10),
+        margin=dict(l=5, t=20),
         height=alto_plot,
     )
     return plot
