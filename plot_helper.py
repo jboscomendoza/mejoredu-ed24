@@ -7,8 +7,10 @@ DES_COLOR = {
     "En proceso": "#00a6ed",
     "Desarrollado": "#7fb800",
 }
+SCR_COLOR = "#4895ef"
 
-def plot_bar(df: pl.DataFrame, grupo:str, des_color:dict=DES_COLOR) -> go.Figure:
+
+def plot_bar(df: pl.DataFrame, grupo: str, des_color: dict = DES_COLOR) -> go.Figure:
     n_grupos = len(df[grupo].unique())
     alto_plot = (n_grupos * 25) + 150
     plot = go.Figure()
@@ -21,7 +23,9 @@ def plot_bar(df: pl.DataFrame, grupo:str, des_color:dict=DES_COLOR) -> go.Figure
                 x=df_desarrollo["porcentaje"],
                 orientation="h",
                 name=desarrollo,
-                text=df_desarrollo.select("porcentaje").with_columns(pl.col("porcentaje") * 100)["porcentaje"].round(2),
+                text=df_desarrollo.select("porcentaje")
+                .with_columns(pl.col("porcentaje") * 100)["porcentaje"]
+                .round(2),
                 marker=dict(color=des_color[desarrollo]),
             )
         )
@@ -29,6 +33,29 @@ def plot_bar(df: pl.DataFrame, grupo:str, des_color:dict=DES_COLOR) -> go.Figure
         barmode="stack",
         xaxis=dict(tickformat=",.2%"),
         margin=dict(l=5, t=20),
+        height=alto_plot,
+    )
+    return plot
+
+
+def plot_scatter(df: pl.DataFrame, grupo: str, scr_color: str = SCR_COLOR) -> go.Figure:
+    n_grupos = len(df[grupo].unique())
+    alto_plot = (n_grupos * 25) + 150
+    plot = go.Figure()
+    plot.add_trace(
+        go.Scatter(
+            x=df["puntaje"],
+            y=df[grupo],
+            orientation="h",
+            mode="markers+text",
+            text=df["puntaje"].round(2),
+            textposition="top center",
+            marker=dict(color=scr_color),
+        )
+    )
+    plot.update_layout(
+        xaxis_range=[0, 20],
+        margin=dict(l=5, t=10),
         height=alto_plot,
     )
     return plot

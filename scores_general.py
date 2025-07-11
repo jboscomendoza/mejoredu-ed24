@@ -1,27 +1,8 @@
 import streamlit as st
 import polars as pl
 import plotly.graph_objects as go
+import plot_helper as ph
 from os import path
-
-SCR_COLOR = "#4895ef"
-
-def plot_scatter(df: pl.DataFrame, scr_color:str=SCR_COLOR) -> go.Figure:
-    plot = go.Figure()
-    plot.add_trace(go.Scatter(
-        x=df["nivel_grado"],
-        y=df["puntaje"],
-        mode="markers+text",
-        text=df["puntaje"].round(2),
-        textposition="top center",
-        marker=dict(color=scr_color)
-    ))
-    plot.update_layout(
-        margin=dict(l=5, t=10),
-        height=300,
-        yaxis_range=[0, 20],
-        xaxis_tickangle=90,
-    )
-    return plot
 
 
 @st.cache_data
@@ -56,7 +37,7 @@ with tab_nac:
     for campo in campos:
         st.markdown(f"**{campo}**")
         s_nac_campo = s_nacional.filter(pl.col("campo") == campo)
-        plot_nac_campo = plot_scatter(s_nac_campo)
+        plot_nac_campo = ph.plot_scatter(s_nac_campo, "nivel_grado")
         st.plotly_chart(plot_nac_campo, key=f"s_nacional_{campo}")
 
 #### Resultados por servicio ####
@@ -69,7 +50,7 @@ with tab_ser:
     for campo in campos:
         st.markdown(f"**{campo}**")
         s_ser_campo = s_ser_sel.filter(pl.col("campo") == campo)
-        plot_ser_campo = plot_scatter(s_ser_campo)
+        plot_ser_campo = ph.plot_scatter(s_ser_campo, "nivel_grado")
         st.plotly_chart(plot_ser_campo, key=f"s_servicio_{campo}")
 
 
@@ -83,7 +64,7 @@ with tab_sex:
     for campo in campos:
         st.markdown(f"**{campo}**")
         s_sex_campo = s_sex_sel.filter(pl.col("campo") == campo)
-        plot_sex_campo = plot_scatter(s_sex_campo)
+        plot_sex_campo = ph.plot_scatter(s_sex_campo, "nivel_grado")
         st.plotly_chart(plot_sex_campo, key=f"s_sexo_{campo}")
 
 
@@ -97,5 +78,5 @@ with tab_ent:
     for campo in campos:
         st.markdown(f"**{campo}**")
         s_ent_campo = s_ent_sel.filter(pl.col("campo") == campo)
-        plot_ent_campo = plot_scatter(s_ent_campo)
+        plot_ent_campo = ph.plot_scatter(s_ent_campo, "nivel_grado")
         st.plotly_chart(plot_ent_campo, key=f"s_entidad_{campo}")
