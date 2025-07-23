@@ -9,6 +9,9 @@ pages = {
         st.Page("scores_general.py", title="2.1 Resultados generales"),
         st.Page("scores_comparativos.py", title="2.2 Comparativos"),
     ],
+    "3. Items": [
+        st.Page("item_general.py", title="3.1 Items general"),
+    ],
 }
 
 navigation = st.navigation(pages)
