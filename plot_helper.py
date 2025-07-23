@@ -10,23 +10,23 @@ DES_COLOR = {
 SCR_COLOR = "#4895ef"
 
 
-def plot_bar(df: pl.DataFrame, grupo: str, des_color: dict = DES_COLOR) -> go.Figure:
+def plot_bar(df: pl.DataFrame, grupo: str, columna: str, des_color: dict = DES_COLOR) -> go.Figure:
     n_grupos = len(df[grupo].unique())
     alto_plot = (n_grupos * 25) + 150
     plot = go.Figure()
     plot.add_trace(go.Bar())
-    for desarrollo in df["desarrollo"].unique(maintain_order=True):
-        df_desarrollo = df.filter(pl.col("desarrollo") == desarrollo)
+    for i in df[columna].unique(maintain_order=True):
+        df_desarrollo = df.filter(pl.col(columna) == i)
         plot.add_trace(
             go.Bar(
                 y=df_desarrollo[grupo],
                 x=df_desarrollo["porcentaje"],
                 orientation="h",
-                name=desarrollo,
+                name=i,
                 text=df_desarrollo.select("porcentaje")
                 .with_columns(pl.col("porcentaje") * 100)["porcentaje"]
                 .round(2),
-                marker=dict(color=des_color[desarrollo]),
+                marker=dict(color=des_color[i]),
             )
         )
     plot.update_layout(

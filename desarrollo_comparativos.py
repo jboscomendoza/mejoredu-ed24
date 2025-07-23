@@ -41,7 +41,7 @@ with tab_ser:
     for campo in campos:
         st.markdown(f"**{campo}**")
         p_ser_campo = p_ser_sel.filter(pl.col("campo") == campo)
-        plot_ser_campo = ph.plot_bar(p_ser_campo, "servicio")
+        plot_ser_campo = ph.plot_bar(p_ser_campo, "servicio", "desarrollo")
         st.plotly_chart(plot_ser_campo, key=f"p_servicio_{campo}")
 
 
@@ -53,7 +53,7 @@ with tab_sex:
     for campo in campos:
         st.markdown(f"**{campo}**")
         p_sex_campo = p_sex_sel.filter(pl.col("campo") == campo)
-        plot_sex_campo = ph.plot_bar(p_sex_campo, "sexo")
+        plot_sex_campo = ph.plot_bar(p_sex_campo, "sexo", "desarrollo")
         st.plotly_chart(plot_sex_campo, key=f"p_sexo_{campo}")
 
 
@@ -65,5 +65,5 @@ with tab_ent:
     for campo in campos:
         st.markdown(f"**{campo}**")
         p_ent_campo = p_ent_sel.filter(pl.col("campo") == campo)
-        plot_ent_campo = ph.plot_bar(p_ent_campo, "entidad")
+        plot_ent_campo = ph.plot_bar(p_ent_campo, "entidad", "desarrollo")
         st.plotly_chart(plot_ent_campo, key=f"p_entidad_{campo}")
