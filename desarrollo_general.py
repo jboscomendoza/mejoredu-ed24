@@ -1,6 +1,5 @@
 import streamlit as st
 import polars as pl
-import plotly.graph_objects as go
 import plot_helper as ph
 from os import path
 
