@@ -1,0 +1,12 @@
+[project]
+name = "mejoredu-ed24"
+version = "0.1.0"
+description = "Dashboard de resultados de la Evaluación Diagnóstica 2024-2025"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastexcel>=0.14.0",
+    "plotly>=6.2.0",
+    "polars>=1.31.0",
+    "streamlit>=1.47.0",
+]
