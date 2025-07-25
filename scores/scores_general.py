@@ -36,7 +36,7 @@ with tab_nac:
     st.markdown("## Resultados nacionales")
 
     for campo in campos:
-        st.markdown(f"**{campo}**")
+        st.markdown(f"### {campo}")
         s_nac_campo = s_nacional.filter(pl.col("campo") == campo).sort(
             "nivel_grado", descending=True
         )
@@ -51,7 +51,7 @@ with tab_ser:
     s_ser_sel = s_servicio.filter(pl.col("servicio") == sel_servicio)
 
     for campo in campos:
-        st.markdown(f"**{campo}**")
+        st.markdown(f"### {campo}")
         s_ser_campo = s_ser_sel.filter(pl.col("campo") == campo).sort(
             "nivel_grado", descending=True
         )
@@ -67,7 +67,7 @@ with tab_sex:
     s_sex_sel = s_sexo.filter(pl.col("sexo") == sel_sexo)
 
     for campo in campos:
-        st.markdown(f"**{campo}**")
+        st.markdown(f"### {campo}")
         s_sex_campo = s_sex_sel.filter(pl.col("campo") == campo).sort(
             "nivel_grado", descending=True
         )
@@ -83,7 +83,7 @@ with tab_ent:
     s_ent_sel = s_entidad.filter(pl.col("entidad") == sel_entidad)
 
     for campo in campos:
-        st.markdown(f"**{campo}**")
+        st.markdown(f"### {campo}")
         s_ent_campo = s_ent_sel.filter(pl.col("campo") == campo).sort(
             "nivel_grado", descending=True
         )

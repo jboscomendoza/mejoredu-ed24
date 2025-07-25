@@ -38,7 +38,7 @@ with tab_ser:
     p_ser_sel = p_servicio.filter(pl.col("nivel_grado") == sel_nivel_grado)
 
     for campo in campos:
-        st.markdown(f"**{campo}**")
+        st.markdown(f"### {campo}")
         p_ser_campo = p_ser_sel.filter(pl.col("campo") == campo).sort(
             "servicio", descending=True
         )
@@ -52,7 +52,7 @@ with tab_sex:
     p_sex_sel = p_sexo.filter(pl.col("nivel_grado") == sel_nivel_grado)
 
     for campo in campos:
-        st.markdown(f"**{campo}**")
+        st.markdown(f"### {campo}")
         p_sex_campo = p_sex_sel.filter(pl.col("campo") == campo).sort(
             "sexo", descending=True
         )
@@ -66,7 +66,7 @@ with tab_ent:
     p_ent_sel = p_entidad.filter(pl.col("nivel_grado") == sel_nivel_grado)
 
     for campo in campos:
-        st.markdown(f"**{campo}**")
+        st.markdown(f"### {campo}")
         p_ent_campo = p_ent_sel.filter(pl.col("campo") == campo).sort(
             "entidad", descending=True
         )
