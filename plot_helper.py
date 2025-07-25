@@ -12,11 +12,11 @@ SCR_COLOR = "#4895ef"
 
 def plot_bar(df: pl.DataFrame, grupo: str, columna: str, des_color: dict = DES_COLOR) -> go.Figure:
     n_grupos = len(df[grupo].unique())
-    if n_grupos >= 10:
-        alto_barra = 25
+    if n_grupos < 9:
+        alto_base = 40 * n_grupos
     else:
-        alto_barra = 20
-    alto_plot = (n_grupos * alto_barra) + 160
+        alto_base = 260
+    alto_plot = (n_grupos * 20) + alto_base
     plot = go.Figure()
     plot.add_trace(go.Bar())
     for i in df[columna].unique(maintain_order=True):
@@ -44,7 +44,11 @@ def plot_bar(df: pl.DataFrame, grupo: str, columna: str, des_color: dict = DES_C
 
 def plot_scatter(df: pl.DataFrame, grupo: str, scr_color: str = SCR_COLOR) -> go.Figure:
     n_grupos = len(df[grupo].unique())
-    alto_plot = (n_grupos * 20) + 160
+    if n_grupos < 9:
+        alto_base = 35 * n_grupos
+    else:
+        alto_base = 160
+    alto_plot = (n_grupos * 20) + alto_base
     plot = go.Figure()
     plot.add_trace(
         go.Scatter(

@@ -15,14 +15,14 @@ def read_parquet_data(archivo: str):
 
 
 p_nacional = read_parquet_data("p_nac.parquet")
-p_entidad  = read_parquet_data("p_ent.parquet")
+p_entidad = read_parquet_data("p_ent.parquet")
 p_servicio = read_parquet_data("p_ser.parquet")
-p_sexo     = read_parquet_data("p_sex.parquet")
+p_sexo = read_parquet_data("p_sex.parquet")
 
-campos    = p_nacional["campo"].unique(maintain_order=True)
+campos = p_nacional["campo"].unique(maintain_order=True)
 entidades = p_entidad["entidad"].unique(maintain_order=True)
 servicios = p_servicio["servicio"].unique(maintain_order=True)
-sexos     = p_sexo["sexo"].unique(maintain_order=True)
+sexos = p_sexo["sexo"].unique(maintain_order=True)
 
 #### Page ####
 st.title("Resultados de la evaluación diagnóstica 2024-2025")
@@ -42,7 +42,9 @@ st.write("""
         A continuación, se presenta la proporción de estudiantes que se situó en cada nivel de desarrollo.
         """)
 
-tab_nac, tab_ser, tab_sex, tab_ent = st.tabs(["Nacional", "Servicio", "Sexo", "Entidad"])
+tab_nac, tab_ser, tab_sex, tab_ent = st.tabs(
+    ["Nacional", "Servicio", "Sexo", "Entidad"]
+)
 
 #### Resultados nacionales ####
 with tab_nac:
@@ -50,7 +52,9 @@ with tab_nac:
 
     for campo in campos:
         st.markdown(f"**{campo}**")
-        p_nac_campo = p_nacional.filter(pl.col("campo") == campo)
+        p_nac_campo = p_nacional.filter(pl.col("campo") == campo).sort(
+            "nivel_grado", descending=True
+        )
         plot_nac_campo = ph.plot_bar(p_nac_campo, "nivel_grado", "desarrollo")
         st.plotly_chart(plot_nac_campo, key=f"p_nacional_{campo}")
 
@@ -58,12 +62,14 @@ with tab_nac:
 with tab_ser:
     st.markdown("## Resultados por servicio")
 
-    sel_servicio= st.selectbox("Servicio", servicios)
+    sel_servicio = st.selectbox("Servicio", servicios)
     p_ser_sel = p_servicio.filter(pl.col("servicio") == sel_servicio)
 
     for campo in campos:
         st.markdown(f"**{campo}**")
-        p_ser_campo = p_ser_sel.filter(pl.col("campo") == campo)
+        p_ser_campo = p_ser_sel.filter(pl.col("campo") == campo).sort(
+            "nivel_grado", descending=True
+        )
         plot_ser_campo = ph.plot_bar(p_ser_campo, "nivel_grado", "desarrollo")
         st.plotly_chart(plot_ser_campo, key=f"p_servicio_{campo}")
 
@@ -77,7 +83,9 @@ with tab_sex:
 
     for campo in campos:
         st.markdown(f"**{campo}**")
-        p_sex_campo = p_sex_sel.filter(pl.col("campo") == campo)
+        p_sex_campo = p_sex_sel.filter(pl.col("campo") == campo).sort(
+            "nivel_grado", descending=True
+        )
         plot_sex_campo = ph.plot_bar(p_sex_campo, "nivel_grado", "desarrollo")
         st.plotly_chart(plot_sex_campo, key=f"p_sexo_{campo}")
 
@@ -91,6 +99,8 @@ with tab_ent:
 
     for campo in campos:
         st.markdown(f"**{campo}**")
-        p_ent_campo = p_ent_sel.filter(pl.col("campo") == campo)
+        p_ent_campo = p_ent_sel.filter(pl.col("campo") == campo).sort(
+            "nivel_grado", descending=True
+        )
         plot_ent_campo = ph.plot_bar(p_ent_campo, "nivel_grado", "desarrollo")
         st.plotly_chart(plot_ent_campo, key=f"p_entidad_{campo}")
