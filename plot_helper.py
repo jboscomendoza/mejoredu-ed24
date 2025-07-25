@@ -12,7 +12,7 @@ SCR_COLOR = "#4895ef"
 
 def plot_bar(df: pl.DataFrame, grupo: str, columna: str, des_color: dict = DES_COLOR) -> go.Figure:
     n_grupos = len(df[grupo].unique())
-    alto_plot = (n_grupos * 20) + 160
+    alto_plot = (n_grupos * 25) + 160
     plot = go.Figure()
     plot.add_trace(go.Bar())
     for i in df[columna].unique(maintain_order=True):
@@ -32,7 +32,7 @@ def plot_bar(df: pl.DataFrame, grupo: str, columna: str, des_color: dict = DES_C
     plot.update_layout(
         barmode="stack",
         xaxis=dict(tickformat=",.2%"),
-        margin=dict(l=5, t=20),
+        margin=dict(t=20, b=10),
         height=alto_plot,
     )
     return plot
