@@ -25,6 +25,9 @@ items_general = st.Page(
 items_comparativos = st.Page(
     page="items/items_comparativos.py", title="3.2 Comparativos", icon="📙"
 )
+irt_general = st.Page(
+    page="irt/irt_general.py", title="4.1 Resultados generales", icon="📐"
+)
 
 pages = {
     "1. Desarrollo": [
@@ -39,6 +42,9 @@ pages = {
         items_general,
         items_comparativos,
     ],
+    "4. IRT": [
+        irt_general,
+    ]
 }
 
 navigation = st.navigation(pages)

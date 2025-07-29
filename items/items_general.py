@@ -113,7 +113,7 @@ with tab_ent:
     ).sort("item", descending=True)
 
     for campo in campos:
-        st.markdown(f"**{campo}**")
+        st.markdown(f"### {campo}")
         i_ent_campo = i_ent_sel.filter(pl.col("campo") == campo)
         plot_ent_campo = ph.plot_bar(i_ent_campo, "item", "respuesta")
         st.plotly_chart(plot_ent_campo, key=f"i_entidad_{campo}")

@@ -70,7 +70,7 @@ with tab_sex:
     i_sex_sel = i_sexo.filter(pl.col("nivel_grado") == sel_nivel_grado)
 
     for campo in campos:
-        st.markdown(f"**{campo}**")
+        st.markdown(f"### {campo}")
         i_sex_campo = i_sex_sel.filter(pl.col("campo") == campo)
         items = i_sex_campo.sort("item")["item"].unique(maintain_order=True)
         for i in items:
@@ -87,7 +87,7 @@ with tab_ent:
     st.markdown("## Resultados por entidad")
     i_ent_sel = i_entidad.filter(pl.col("nivel_grado") == sel_nivel_grado)
     for campo in campos:
-        st.markdown(f"**{campo}**")
+        st.markdown(f"### {campo}")
         i_ent_campo = i_ent_sel.filter(pl.col("campo") == campo)
         items = i_ent_campo.sort("item")["item"].unique(maintain_order=True)
         for i in items:
