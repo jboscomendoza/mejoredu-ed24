@@ -1,6 +1,16 @@
 import streamlit as st
 
 
+caracteristicas = st.Page(
+    page="introduccion/caracteristicas.py",
+    title="Características de la evaluación",
+)
+
+estrategia = st.Page(
+    page="introduccion/estrategia.py",
+    title="Estrategia de aplicación",
+)
+
 desarrollo_general = st.Page(
     page="desarrollo/desarrollo_general.py",
     title="1.1 Resultados generales",
@@ -30,6 +40,10 @@ irt_general = st.Page(
 )
 
 pages = {
+    "Introducción": [
+        caracteristicas,
+        estrategia,
+    ],
     "1. Desarrollo": [
         desarrollo_general,
         desarrollo_comparativos,
@@ -44,7 +58,7 @@ pages = {
     ],
     "4. IRT": [
         irt_general,
-    ]
+    ],
 }
 
 navigation = st.navigation(pages)
