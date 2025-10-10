@@ -1,4 +1,4 @@
-# 2.4 Generación de los resultados
+# Generación de los resultados
 
 Para que la información registrada en la plataforma SABER fuera incluida en la base de datos final, debía cumplir con los siguientes criterios para su análisis estadístico y psicométrico:
 

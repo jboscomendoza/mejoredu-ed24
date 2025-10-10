@@ -1,4 +1,4 @@
-# 1.2 Diseño de los instrumentos
+# Diseño de los instrumentos
 
 La SEP y Mejoredu convocaron a un grupo de trabajo colegiado conformado por docentes frente a grupo de distintas entidades federativas y especialistas en desarrollo curricular para acompañar los procesos de definición conceptual y metodológica de la Evaluación Diagnóstica.
 

@@ -38,7 +38,21 @@ sexos = i_sexo["sexo"].unique(maintain_order=True)
 nivel_grados = i_nacional["nivel_grado"].unique(maintain_order=True)
 
 #### Page ####
-st.title("Resultados de la evaluación diagnóstica 2024-2025")
+st.title("Resultados de la evaluación diagnóstica 2024-2025 - Criterios")
+
+"""
+En esta evaluación, las y los estudiantes fueron evaluados por sus propios docentes apoyándose con rúbricas en las cuales se establecieron criterios de valoración.
+
+Cada criterio de valoración tenía cuatro niveles de desarrollo en los cuales se podían situar las respuestas de los estudiantes en las consignas de evaluación:
+
+* Sin evidencia
+* Requiere apoyo
+* En proceso
+* Desarrollado
+
+A continuación se presenta la proporción de respuestas que fueron asignadas a cada nivel de desarrollo para cada uno de los criterios evaluados.
+
+"""
 
 sel_nivel_grado = st.selectbox("Grado", nivel_grados)
 

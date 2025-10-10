@@ -1,4 +1,4 @@
-# 1.1 Referentes curriculares
+# Referentes curriculares
 
 El referente curricular de la ED fue el plan de estudio 2022. En este, la evaluación de los aprendizajes es parte del proceso formativo y tiene la función principal de retroalimentar el proceso educativo.
 

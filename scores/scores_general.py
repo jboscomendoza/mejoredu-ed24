@@ -25,7 +25,22 @@ servicios = s_servicio["servicio"].unique(maintain_order=True)
 sexos = s_sexo["sexo"].unique(maintain_order=True)
 
 #### Page ####
-st.title("Resultados de la evaluación diagnóstica 2024-2025")
+st.title("Resultados de la evaluación diagnóstica 2024-2025 - Puntajes de los estudiantes")
+
+"""
+En esta evaluación, las y los estudiantes fueron evaluados por sus propios docentes apoyándose con rúbricas en las cuales se establecieron criterios de valoración.
+
+Cada criterio de valoración tenía cuatro niveles de desarrollo en los cuales se podían situar las respuestas de los estudiantes en las consignas de evaluación:
+
+* Sin evidencia
+* Requiere apoyo
+* En proceso
+* Desarrollado
+
+A cada valoración corresponde un puntaje ponderado de acuerdo a la complejidad del proceso de aprendizaje evaluado. El máximo puntaje posible para un estudiante, a partir de sus respuesta a los EIAs aplicados, es de **20 puntos**.
+
+A continuación, se presentan los puntajes promedio de los estudiantes.
+"""
 
 tab_nac, tab_ser, tab_sex, tab_ent = st.tabs(
     ["Nacional", "Servicio", "Sexo", "Entidad"]

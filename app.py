@@ -1,15 +1,23 @@
 import streamlit as st
 
-
 caracteristicas = st.Page(
     page="introduccion/caracteristicas.py",
     title="Características de la evaluación",
+    icon="✏️",
 )
 
 estrategia = st.Page(
     page="introduccion/estrategia.py",
     title="Estrategia de aplicación",
+    icon="✏️",
 )
+
+colaboradores = st.Page(
+    page="introduccion/colaboradores.py",
+    title="Personas colaboradoras",
+    icon="✏️",
+)
+
 
 desarrollo_general = st.Page(
     page="desarrollo/desarrollo_general.py",
@@ -43,6 +51,7 @@ pages = {
     "Introducción": [
         caracteristicas,
         estrategia,
+        colaboradores,
     ],
     "1. Desarrollo": [
         desarrollo_general,

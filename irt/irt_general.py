@@ -17,7 +17,13 @@ nivel_grados = irt_params["nivel_grado"].unique(maintain_order=True)
 umbrales = irt_params["umbral"].unique(maintain_order=True)
 
 #### Page ####
-st.title("Resultados de la evaluación diagnóstica 2024-2025")
+st.title("Resultados de la evaluación diagnóstica 2024-2025 - Puntajes de IRT")
+
+"""
+A continuación, se presentan los puntajes de los estudiantes en la Evaluación Diagnósticas, obtenidos mediane Teoría de Respuesta al Ítem (TRI o IRT por sus siglas en inglés).
+
+Para la estimación de estos puntajes se ha ajustado un modelo unidimensional de crédito parcial, de modo que se obtiene un único puntaje por estudiante para ambos EIA aplicados.
+"""
 
 sel_nivel_grado = st.selectbox("Grado", nivel_grados)
 

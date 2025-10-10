@@ -1,4 +1,4 @@
-# 2.2 Levantamiento de la información
+# Levantamiento de la información
 
 La Dirección General de Levantamiento, Procesamiento y Análisis de la Información (DGLPAI) de Mejoredu trabajó en colaboración con la SEP y las autoridades educativas
 de las 32 entidades federativas en la aplicación de la Evaluación Diagnóstica, en diferentes líneas de trabajo, entre otras:

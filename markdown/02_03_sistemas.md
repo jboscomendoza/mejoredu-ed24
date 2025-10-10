@@ -1,4 +1,4 @@
-# 2.3 Sistemas
+# Sistemas
 
 La plataforma SABER fue modificada para responder a las características particulares de los EIA, en concordancia con lo establecido por la NEM. Este sistema es alimentado
 con los reportes generados por el SiCRER.

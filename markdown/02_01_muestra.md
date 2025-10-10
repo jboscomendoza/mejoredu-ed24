@@ -1,4 +1,4 @@
-# 2.1 Selección de la muestra y diseño muestral
+# Selección de la muestra y diseño muestral
 
 La población objetivo de la Evaluación Diagnóstica estuvo compuesta por las y los alumnos que cursaban educación básica en tercero de preescolar, los seis grados de primaria y los tres grados de secundaria durante el ciclo escolar 2024–2025. Para construir el marco muestra se consultó la información de la estadística oficial del ciclo escolar 2023-2024 recolectada a través del formato 911. Los tipos de servicio considerados en secundaria fueron: general, técnica, telesecundaria y privada.
 
@@ -15,14 +15,14 @@ Los estratos se dividieron en conglomerados, conjuntos de centros escolares geog
 
 Para el cálculo del tamaño de la muestra se empleó la siguiente ecuación, partiendo del supuesto de una población para la cual se buscó calcular la proporción de múltiples variables:
 
-[ecuacion]
+$$n_0 \doteq \frac{{z^2}_{1 - {\frac{a}{z}}}p(1 - p)}{\delta^2}$$
 
 Donde:
 
-- 𝑛0: tamaño de muestra que se quiere estimar.
-- 𝑧: cuantil de la normal con probabilidad 1 − a/2.
-- 𝑝: proporción estimada.
-- 𝛿: margen de error.
+- $n_0$: tamaño de muestra que se quiere estimar.
+- $z$: cuantil de la normal con probabilidad $1 − \frac{a}{2}$.
+- $p$: proporción estimada.
+- $\delta$: margen de error.
 
 Además, se tomó el tamaño de muestra efectivo, es decir, el número mínimo necesario para alcanzar una alta precisión en los resultados estimados, como un ajuste para incluir el efecto de los conglomerados en dichas estimaciones.
 

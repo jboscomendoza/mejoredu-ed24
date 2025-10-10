@@ -25,7 +25,7 @@ servicios = p_servicio["servicio"].unique(maintain_order=True)
 sexos = p_sexo["sexo"].unique(maintain_order=True)
 
 #### Page ####
-st.title("Resultados de la evaluación diagnóstica 2024-2025")
+st.title("Resultados de la evaluación diagnóstica 2024-2025 - Niveles de desarrollo de los estudiantes")
 
 st.write("""
         En esta evaluación, las y los estudiantes fueron evaluados por sus propios docentes apoyándose con rúbricas en las cuales se establecieron criterios de valoración.

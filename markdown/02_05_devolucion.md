@@ -1,4 +1,4 @@
-# 2.5. Devolución de resultados de evaluación a los centros de trabajo
+# Devolución de resultados de evaluación a los centros de trabajo
 
 La devolución de resultados a los centros escolares que participaron en la Evaluación Diagnóstica debía ser oportuna para proporcionarles información de utilidad que les permitiera ajustar y mejorar las estrategias educativas para seguir apoyando los procesos de aprendizaje según las necesidades identificadas.
 

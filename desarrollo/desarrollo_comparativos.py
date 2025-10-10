@@ -26,7 +26,7 @@ sexos = p_sexo["sexo"].unique(maintain_order=True)
 nivel_grados = p_nacional["nivel_grado"].unique(maintain_order=True)
 
 #### Page ####
-st.title("Resultados de la evaluación diagnóstica 2024-2025")
+st.title("Resultados de la evaluación diagnóstica 2024-2025 - Comparativo de niveles de desarrollo de los estudiantes")
 
 sel_nivel_grado = st.selectbox("Grado", nivel_grados)
 

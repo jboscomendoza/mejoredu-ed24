@@ -10,6 +10,7 @@ def mostrar_md(archivo: str, directorio: str = "markdown") -> str:
 
 
 pares = {
+    "Introduccion": "00_00_introduccion.md",
     "Características de la evaluación": "01_00_caracteristicas.md",
     "Referentes curriculares": "01_01_referentes.md",
     "Diseño de los instrumentos": "01_02_diseno.md",
