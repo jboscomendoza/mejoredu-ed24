@@ -87,3 +87,10 @@ with tab_ent:
         )
         plot_ent_campo = ph.plot_scatter(s_ent_campo, "entidad")
         st.plotly_chart(plot_ent_campo, key=f"s_entidad_{campo}")
+        tabla_ent = (
+            s_ent_campo.with_columns(porcentaje=(pl.col("puntaje")).round(2))
+            .select(pl.col(["campo", "entidad", "puntaje"]))
+            .sort("entidad")
+        )
+        st.markdown(" ")
+        st.dataframe(tabla_ent)

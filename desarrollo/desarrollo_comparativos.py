@@ -72,3 +72,11 @@ with tab_ent:
         )
         plot_ent_campo = ph.plot_bar(p_ent_campo, "entidad", "desarrollo")
         st.plotly_chart(plot_ent_campo, key=f"p_entidad_{campo}")
+        tabla_ent = (
+            p_ent_campo.with_columns(porcentaje=(pl.col("porcentaje") * 100).round(2))
+            .select(pl.col(["campo", "entidad", "desarrollo", "porcentaje"]))
+            .pivot("desarrollo", index=["campo", "entidad"], values="porcentaje")
+            .sort("entidad")
+        )
+        st.markdown(" ")
+        st.dataframe(tabla_ent)
